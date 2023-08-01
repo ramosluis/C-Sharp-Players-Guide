@@ -9,9 +9,9 @@ ulong ulongExample = 18_000_000_000_000_000_000;
 float floatExample = 10.0F;
 double doubleExample = 1234.1234543;
 decimal decimalExample = 1234.12341234124M;
-bool  boolExample = false;
+bool boolExample = false;
 string stringExample = "Landime";
-char  charExample =  'a';
+char charExample = 'a';
 
 Console.WriteLine("Byte example: " + byteExample);
 Console.WriteLine("Short example: " + shortExample);
