@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watchtower", "Watchtower.csproj", "{95465A5D-1741-44BD-9216-7E45D9B6999F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95465A5D-1741-44BD-9216-7E45D9B6999F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95465A5D-1741-44BD-9216-7E45D9B6999F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95465A5D-1741-44BD-9216-7E45D9B6999F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95465A5D-1741-44BD-9216-7E45D9B6999F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {38D1884D-47C4-425D-A0A7-AEEDB5090B41}
+	EndGlobalSection
+EndGlobal
