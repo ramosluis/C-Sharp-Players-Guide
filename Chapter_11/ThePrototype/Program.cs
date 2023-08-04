@@ -2,8 +2,7 @@
 
 while (true)
 {
-    Console.Write("User 1, enter a number between 0 and 100: ");
-    number = Convert.ToInt32(Console.ReadLine());
+    number = AskForNumber("User 1, enter a number between 0 and 100: ");
 
     if(number < 0 || number > 100)
     {
@@ -19,8 +18,7 @@ Console.WriteLine("User 2, guess the number.");
 
 while (true)
 {
-    Console.Write("What is your next guess? ");
-    guess = Convert.ToInt32(Console.ReadLine());
+    guess = AskForNumber("What is your next guess? ");
 
     if (guess > number)
     {
@@ -35,4 +33,11 @@ while (true)
         Console.WriteLine("You guessed the number!");
         break;
     }
+}
+
+int AskForNumber(string text)
+{
+    Console.Write(text);
+    int returnValue = Convert.ToInt32(Console.ReadLine());
+    return returnValue;
 }
