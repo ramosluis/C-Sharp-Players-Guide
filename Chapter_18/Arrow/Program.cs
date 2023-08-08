@@ -69,20 +69,16 @@
 
 class Arrow
 {
-    private Arrowhead _arrowhead;
-    private Fletching _fletching;
-    private int _length;
+    private Arrowhead ArrowheadType { get; init; }
+    private Fletching ArrowFletching { get; init; }
+    private int ArrowLength {  get; init; }
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, int length)
     {
-        _arrowhead = arrowhead;
-        _fletching = fletching;
-        _length = length;
+        ArrowheadType = arrowhead;
+        ArrowFletching = fletching;
+        ArrowLength = length;
     }
-
-    public Arrowhead GetArrowhead() { return _arrowhead; }
-    public Fletching GetFletching() { return _fletching; }
-    public int GetLength() { return _length; }
 
     public float GetCost()
     {
@@ -91,12 +87,12 @@ class Arrow
 
     private float LengthCost()
     {
-        return 0.05F * _length;
+        return 0.05F * ArrowLength;
     }
 
     private float FletchingCost()
     {
-        float cost = _fletching switch
+        float cost = ArrowFletching switch
         {
             Fletching.Plastic => 10.0F,
             Fletching.TurkeyFeathers => 5.0F,
@@ -109,7 +105,7 @@ class Arrow
 
     private float ArrowheadCost()
     {
-        float cost = _arrowhead switch
+        float cost = ArrowheadType switch
         {
             Arrowhead.Steel => 10.0F,
             Arrowhead.Wood => 3.0F,
