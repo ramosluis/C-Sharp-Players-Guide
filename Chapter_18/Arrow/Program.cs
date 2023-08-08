@@ -1,7 +1,33 @@
 ﻿while (true)
 {
+    Arrow arrow;
     Console.Clear();
-    Console.Write(@"What type of arrowhead would you like?
+    Console.WriteLine(@"What type of arrow would you like?
+1 - Elite Arrow
+2 - Beginner Arrow
+3 - Marksman Arrow
+4 - Custom Arrow
+0 - Quit");
+
+    int answer = Convert.ToInt32(Console.ReadLine());
+    if (answer == 0) { break; }
+
+    switch (answer)
+    {
+        case 1:
+            arrow = Arrow.CreateEliteArrow();
+            Console.WriteLine($"The cost for this arrow is ${arrow.GetCost()}.");
+            break;
+        case 2:
+            arrow = Arrow.CreateBeginnerArrow();
+            Console.WriteLine($"The cost for this arrow is ${arrow.GetCost()}.");
+            break;
+        case 3:
+            arrow = Arrow.CreateMarksmanArrow();
+            Console.WriteLine($"The cost for this arrow is ${arrow.GetCost()}.");
+            break;
+        default:
+            Console.Write(@"What type of arrowhead would you like?
 1 - Steel
 2 - Wood
 3 - Obsidian
@@ -9,19 +35,18 @@
 
 > ");
 
-    int answer = Convert.ToInt32(Console.ReadLine());
+            answer = Convert.ToInt32(Console.ReadLine());
+            if (answer == 0) { break; }
 
-    if (answer == 0) { break; }
+            Arrowhead arrowhead = answer switch
+            {
+                1 => Arrowhead.Steel,
+                2 => Arrowhead.Wood,
+                3 => Arrowhead.Obsidian,
+                _ => Arrowhead.Steel
+            };
 
-    Arrowhead arrowhead = answer switch
-    {
-        1 => Arrowhead.Steel,
-        2 => Arrowhead.Wood,
-        3 => Arrowhead.Obsidian,
-        _ => Arrowhead.Steel
-    };
-
-    Console.Write(@"What type of fletching would you like?
+            Console.Write(@"What type of fletching would you like?
 1 - Plastic
 2 - Turkey Feathers
 3 - Goose Feathers
@@ -29,40 +54,43 @@
 
 > ");
 
-    answer = Convert.ToInt32(Console.ReadLine());
+            answer = Convert.ToInt32(Console.ReadLine());
+            if (answer == 0) { break; }
 
-    if(answer == 0) { break; }
+            Fletching fletching = answer switch
+            {
+                1 => Fletching.Plastic,
+                2 => Fletching.TurkeyFeathers,
+                3 => Fletching.GooseFeathers,
+                _ => Fletching.Plastic
+            };
 
-    Fletching fletching = answer switch
-    {
-        1 => Fletching.Plastic,
-        2 => Fletching.TurkeyFeathers,
-        3 => Fletching.GooseFeathers,
-        _ => Fletching.Plastic
-    };
+            int length = 0;
 
-    int length = 0;
+            while (true)
+            {
+                Console.Write("How long would you like the shaft to be (enter 0 to quit)? ");
+                length = Convert.ToInt32(Console.ReadLine());
 
-    while (true)
-    {
-        Console.Write("How long would you like the shaft to be (enter 0 to quit)? ");
-        length = Convert.ToInt32(Console.ReadLine());
+                if (length == 0) { break; }
 
-        if (length == 0) { break; }
+                if (length < 60 || length > 100)
+                {
+                    Console.WriteLine("Invalid length, please input a length between 60 and 100 cm.");
+                    continue;
+                }
 
-        if (length < 60 || length > 100)
-        {
-            Console.WriteLine("Invalid length, please input a length between 60 and 100 cm.");
-            continue;
-        }
+                break;
+            }
 
-        break;
+            if (length == 0) { break; }
+
+            arrow = new Arrow(arrowhead, fletching, length);
+
+            Console.WriteLine($"The cost for this arrow is ${arrow.GetCost()}.");
+            break;
     }
-    if (length == 0) { break; }
 
-    Arrow arrow = new Arrow(arrowhead, fletching, length);
-
-    Console.WriteLine($"The cost for this arrow is ${arrow.GetCost()}.");
     Console.ReadLine();
 }
 
@@ -71,7 +99,7 @@ class Arrow
 {
     private Arrowhead ArrowheadType { get; init; }
     private Fletching ArrowFletching { get; init; }
-    private int ArrowLength {  get; init; }
+    private int ArrowLength { get; init; }
 
     public Arrow(Arrowhead arrowhead, Fletching fletching, int length)
     {
@@ -79,6 +107,10 @@ class Arrow
         ArrowFletching = fletching;
         ArrowLength = length;
     }
+
+    public static Arrow CreateEliteArrow() => new Arrow(Arrowhead.Steel, Fletching.Plastic, 95);
+    public static Arrow CreateBeginnerArrow() => new Arrow(Arrowhead.Wood, Fletching.GooseFeathers, 75);
+    public static Arrow CreateMarksmanArrow() => new Arrow(Arrowhead.Steel, Fletching.GooseFeathers, 65);
 
     public float GetCost()
     {
