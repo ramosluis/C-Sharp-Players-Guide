@@ -3,7 +3,7 @@ ui.Start();
 
 public class TicTacToe
 {
-    public string[] Marks { get; set; }
+    private string[] Marks { get; set; }
     public int Turn { get; set; }
     public TicTacToe()
     {
