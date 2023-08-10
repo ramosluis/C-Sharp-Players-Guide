@@ -4,9 +4,11 @@ ui.Start();
 public class TicTacToe
 {
     public string[] Marks { get; set; }
+    public int Turn { get; set; }
     public TicTacToe()
     {
         Marks = new string[10];
+        Turn = 1;
         for (int i = 0; i < Marks.Length; i++)
         {
             Marks[i] = "";
@@ -37,8 +39,6 @@ public class TicTacToe
 
     public string CheckForWinner()
     {
-        bool allMarked = true;
-
         if (Marks[1].Equals(Marks[2]) && Marks[2].Equals(Marks[3]))
             return Marks[1];
         else if (Marks[4].Equals(Marks[5]) && Marks[5].Equals(Marks[6]))
@@ -55,14 +55,8 @@ public class TicTacToe
             return Marks[7];
         else if (Marks[9].Equals(Marks[5]) && Marks[5].Equals(Marks[1]))
             return Marks[9];
-        else
-        {
-            for(int i = 1; i < Marks.Length; i++)
-            {
-                if (Marks[i].Equals("")) allMarked = false;
-            }
-            if (allMarked) return "Tie";
-        }
+        else if (Turn >= 9) return "Tie";
+
         return "";
     }
 }
@@ -82,7 +76,7 @@ public class UserInterface
         while (true)
         {
             Console.Clear();
-            Console.WriteLine($"It is {Player}'s turn.");
+            Console.WriteLine($"It is {Player}'s turn. Turn {game.Turn}.");
             game.DrawBoard();
             while (true)
             {
@@ -109,6 +103,7 @@ public class UserInterface
             else
             {
                 UpdatePlayer();
+                game.Turn++;
             }
         }
         Console.ReadLine();
