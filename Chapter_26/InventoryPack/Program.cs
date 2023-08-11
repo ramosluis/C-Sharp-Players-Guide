@@ -13,6 +13,7 @@ while(true)
 0 - Quit
 
 Pack info: Items ({pack.NumberOfItems}/{pack.MaxItems}) Weight ({pack.Weight:#.##}/{pack.MaxWeight:#.##})  Volume ({pack.Volume:#.##}/{pack.MaxVolume:#.##})
+{pack.ToString()}
 
 > ");
 
@@ -67,31 +68,61 @@ public class InventoryItem
 public class Arrow : InventoryItem
 {
     public Arrow() : base(0.1, 0.05) { }
+
+    public override string ToString()
+    {
+        return "Arrow";
+    }
 }
 
 public class Bow : InventoryItem
 {
     public Bow() : base(1, 4) { }
+
+    public override string ToString()
+    {
+        return "Bow";
+    }
 }
 
 public class Rope : InventoryItem
 {
     public Rope () : base(1, 1.5) { }
+
+    public override string ToString()
+    {
+        return "Rope";
+    }
 }
 
 public class Water : InventoryItem
 {
     public Water () : base(2, 3) { }
+
+    public override string ToString()
+    {
+        return "Water";
+    }
 }
 
 public class Food : InventoryItem
 {
     public Food() : base(1, 0.5) { }
+
+    public override string ToString()
+    {
+        return "Food";
+    }
 }
 
 public class Sword : InventoryItem
 {
     public Sword() : base(5, 3) { }
+
+    public override string ToString()
+    {
+        return "Sword";
+    }
 }
 
 public class Pack
@@ -130,5 +161,23 @@ public class Pack
         Volume += item.Volume;
 
         return true;
+    }
+
+    public override string ToString() 
+    {
+        if (_items[0] == null)
+        {
+            return "Pack is empty.";
+        }
+
+        string contents = "Pack containing";
+
+        foreach(InventoryItem item in _items)
+        {
+            if (item != null)
+                contents += " " + item.ToString();
+        }
+
+        return contents;
     }
 }
